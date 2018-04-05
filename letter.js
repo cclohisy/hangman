@@ -1,5 +1,4 @@
-//var userGuess= "b"
-//var hiddenLetter = "a"
+
 function Letter(hiddenLetter) {
     this.hiddenLetter = hiddenLetter
     this.correctGuess = false
@@ -17,21 +16,8 @@ function Letter(hiddenLetter) {
             this.correctGuess = true
             return true
         }
-        // console.log("WRONG")
-        //console.log("\narg check result: " + this.correctGuess)
+
     }
 }
 
 module.exports = Letter
-
-// var a = new Letter("a")
-// var b = new Letter("b")
-
-// console.log("argCheck a vs. a " + a.argCheck("a"))
-// console.log("letterguess results : " + a.letterGuess())
-
-// a.letterGuess()
-
-// //console.log(b)
-// console.log("argCheck b vs. a " + b.argCheck("a"))
-// console.log("letterGuess results: " + b.letterGuess())

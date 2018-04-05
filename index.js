@@ -2,28 +2,23 @@ var inquirer = require("inquirer");
 
 var Word = require("./word")
 
-var wordOptions = ["hey", "unicorn", "balloon",""]
+var wordOptions = ["hey", "unicorn", "balloon", "horray","teleportation","music","incessant"]
 var randomMax = wordOptions.length
-var randomIndex = (Math.floor(Math.random() * randomMax) )
+var randomIndex = (Math.floor(Math.random() * randomMax))
 var wordChoiceRandom = wordOptions[randomIndex]
 var wordDisplay = ""
-
-
-
 var letterArray = Array.from(wordChoiceRandom)
-console.log(letterArray)
+//console.log(letterArray)
 
 var wordGuess = new Word()
-// console.log(wordGuess)
 wordGuess.makeArray(letterArray)
 wordGuess.displayWord(wordDisplay)
 
-var chances = 5;
+var chances = (letterArray.length + Math.floor(.5 * letterArray.length))
+//console.log("chances= " + chances)
 
-var questionPrompt = function () {
-    if (chances > 0) {
-        //display starting wordDisplay?
-        // wordGuess.displayWord()
+function questionPrompt() {
+    if (chances >= 0) {
         inquirer.prompt([
             {
                 type: "input",
@@ -34,24 +29,20 @@ var questionPrompt = function () {
             var userGuess = response.userGuess;
             console.log("You Guessed: " + response.userGuess)
             wordGuess.displayWord(userGuess)
-            //wordGuess.resultMessage()- not working right 
-
-            // if (userGuess.argCheck()){
-            // console.log("correct")
-            // }
-
-            // else 
-            // console.log("WRONG")
             
+            if(wordGuess.displayWord(userGuess)!= undefined){
+            console.log(wordGuess.displayWord(userGuess))
+            }
             chances--;
+            questionPrompt()
 
-            questionPrompt();
         });
     }
     else {
-        console.log("Out of Guesses :( ");
+        console.log("Out of Guesses :( \n YOU LOST");
     }
 };
+
 
 questionPrompt()
 
