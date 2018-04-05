@@ -1,16 +1,16 @@
 var inquirer = require("inquirer");
 
 var Word = require("./word")
-//make word array
-//split by , //function to split word into letter array
-var userGuess = ""
 
-var wordOptions = ["hey", "unicorn"]
-var wordChoiceRandom = wordOptions[0]
+var wordOptions = ["hey", "unicorn", "balloon",""]
+var randomMax = wordOptions.length
+var randomIndex = (Math.floor(Math.random() * randomMax) )
+var wordChoiceRandom = wordOptions[randomIndex]
 var wordDisplay = ""
 
+
+
 var letterArray = Array.from(wordChoiceRandom)
-console.log(wordChoiceRandom)
 console.log(letterArray)
 
 var wordGuess = new Word()
@@ -23,24 +23,26 @@ var chances = 5;
 var questionPrompt = function () {
     if (chances > 0) {
         //display starting wordDisplay?
-        wordGuess.displayWord()
+        // wordGuess.displayWord()
         inquirer.prompt([
             {
                 type: "input",
-                message: "Guess a letter" + "\n" + wordDisplay,
+                message: "Guess a letter",
                 name: "userGuess"
             }
         ]).then(function (response) {
             var userGuess = response.userGuess;
-            console.log(response.userGuess)
-            wordGuess.displayWord()
-            //console.log(wordGuess)
-            //if user guess = hidden letter / if argCheck returns true... 
-            //console.log("correct")
+            console.log("You Guessed: " + response.userGuess)
+            wordGuess.displayWord(userGuess)
+            //wordGuess.resultMessage()- not working right 
 
-            //else 
-            //console.log("WRONG")
-            //console.log("you have "+ chances +" guesses left")
+            // if (userGuess.argCheck()){
+            // console.log("correct")
+            // }
+
+            // else 
+            // console.log("WRONG")
+            
             chances--;
 
             questionPrompt();

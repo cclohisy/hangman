@@ -3,29 +3,29 @@
 function Letter(hiddenLetter) {
     this.hiddenLetter = hiddenLetter
     this.correctGuess = false
-    this.letterGuess = function(){
-        if(this.correctGuess === true){
+    this.letterGuess = function () {
+        if (this.correctGuess === true) {
             return this.hiddenLetter
         }
-        else{
+        else {
             return "_ "
         }
     }
-    this.argCheck = function(userGuess){
-        if(userGuess===this.hiddenLetter){
-            this.correctGuess= true
+    this.argCheck = function (userGuess) {
+
+        if (userGuess === this.hiddenLetter) {
+            this.correctGuess = true
+            return true
         }
-        else{
-            this.correctGuess = false
-        }
-        console.log("\narg check result: " + this.correctGuess)
+        // console.log("WRONG")
+        //console.log("\narg check result: " + this.correctGuess)
     }
 }
 
 module.exports = Letter
 
-// var a = new Letter("a", false)
-// var b = new Letter("b",false)
+// var a = new Letter("a")
+// var b = new Letter("b")
 
 // console.log("argCheck a vs. a " + a.argCheck("a"))
 // console.log("letterguess results : " + a.letterGuess())
